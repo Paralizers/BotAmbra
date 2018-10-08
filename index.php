@@ -48,7 +48,7 @@
 				case "setmessage":
 					if(in_array($userId,$adminBot)){
 							if($messageConfig === false){
-								sendMessageBot($chatId,$userId,$command,"Nel prossimo messaggio, scrivi il testo da far comparire ogni 15 minuti, per annullare l'operazione clicca /setMessage");
+								sendMessageBot($chatId,$userId,$command,"Nel prossimo messaggio, scrivi il testo da far comparire ogni 8 ore, per annullare l'operazione clicca /setMessage");
 								$botConfig["setMessage"][$userId] = 1;
 							}
 							else{
@@ -58,16 +58,21 @@
 							file_put_contents("bot.json",json_encode($botConfig));
 						}
 				break;
-				case "info":
+				case "message":
+					sendMessageBot($chatId,$userId,null,file_get_contents("message.txt"),1);
+				break;
+				
+				/*case "info":
 					sendMessageBot($chatId,$userId,$command,"Info");
 				break;
 				case "test":
 					sendMessageBot($chatId,$userId,$command,"Prova123");
-				break;
+				break;*/
 			}
 		}
 		else if($userId && $chatId && $messageConfig && $text && ! $command){
 			file_put_contents("message.txt",$text);
+			sendMessageBot($chatId,$userId,null,"Anteprima messaggio:");
 			sendMessageBot($chatId,$userId,null,$text,1);
 			sendMessageBot($chatId,$userId,null,"Messaggio Impostato Correttamente");
 			unset($botConfig["setMessage"][$userId]);
