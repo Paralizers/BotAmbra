@@ -46,7 +46,7 @@
 			$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 			$text = isset($message["text"]) ? $message["text"] : "";
 			$adminBot = [225541225,264445569];
-			$command = strpos($text,'/') === 0 ? explode(" ",substr($text,1))[0] : false;
+			$command = strpos($text,'/') === 0 ? explode(" ",explode("@",substr($text,1)))[0] : false;
 			file_put_contents("command.json",$command);
 			if($userId && $chatId && $command && ($messageConfig === false || $command !== "setmessage")){
 				switch($command){
