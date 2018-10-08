@@ -36,7 +36,7 @@
 	if($update){
 		$message = isset($update['message']) ? $update['message'] : "";
 		$userId = isset($message["from"]["id"]) ? $message["from"]["id"] : "";
-		$messageConfig = isset($bot["setMessage"][$userId]) ? true : false;
+		$messageConfig = isset($botConfig["setMessage"][$userId]) ? true : false;
 		$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 		$text = isset($message["text"]) ? $message["text"] : "";
 		$adminBot = [225541225,264445569];
@@ -50,13 +50,13 @@
 					if(in_array($userId,$adminBot)){
 							if($messageConfig === false){
 								sendMessageBot($chatId,$userId,$command,"Nel prossimo messaggio, scrivi il testo da far comparire ogni 15 minuti, per annullare l'operazione clicca /setMessage");
-								$bot["setMessage"][$userId] = 1;
+								$botConfig["setMessage"][$userId] = 1;
 							}
 							else{
 								sendMessageBot($chatId,$userId,$command,"Annullato");
-								uset($bot["setMessage"][$userId]);
+								uset($botConfig["setMessage"][$userId]);
 							}
-							file_put_contents("bot.json",json_encode($bot));
+							file_put_contents("bot.json",json_encode($botConfig));
 						}
 				break;
 				case "info":
