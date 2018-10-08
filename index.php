@@ -28,7 +28,7 @@
 		//Invia File
 		file_put_contents($UserFile,json_encode($userDecode));
 	}
-	$content = file_get_contents("php://input");
+	$content = file_get_contents("test2.json");
 	file_put_contents("input.json",$content);
 	$update = json_decode($content, true);
 	print_r($update);
@@ -39,8 +39,9 @@
 		$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 		$text = isset($message["text"]) ? $message["text"] : "";
 		$adminBot = [225541225];
-		$command = strpos("/",$text) === 0 ?  substr(explode(" ",$text)[0],1) : "base";
-		if($userId && $chatId && $text){
+		$command = strpos("/",$text) === 0 ? explode(" ",substr($text,1))[0] : "base";
+		echo $command;
+		if($userId && $chatId && $command){
 			switch($command){
 				case "info":
 					sendMessageBot($chatId,$userId,$command,"Info");
