@@ -28,7 +28,7 @@
 		//Invia File
 		file_put_contents($UserFile,json_encode($userDecode));
 	}
-	$content = file_get_contents("test2.js");
+	$content = file_get_contents("test2.json");
 	file_put_contents("input.json",$content);
 	$update = json_decode($content, true);
 	print_r($update);
