@@ -36,7 +36,7 @@
 		$message = isset($update['message']) ? $update['message'] : "";
 		$userId = isset($update["message"]["from"]["id"]) ? $update["message"]["from"]["id"] : "";
 		$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
-		$adminBot = [];
+		$adminBot = [225541225];
 		if($userId && $chatId)sendMessageBot($chatId,$userId,"Prova123");
 	}
 ?>
