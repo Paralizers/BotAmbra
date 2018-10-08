@@ -9,7 +9,7 @@
 		if(isset($userDecode[$userId]["command"][$command]) && $userDecode[$userId]["command"][$command] > time()){
 			return false;
 		}
-		$userDecode[$userId] = strtotime("+2 minutes");
+		$userDecode[$userId]["command"][$command] = strtotime("+2 minutes");
 		//Setto variabile Utente
 		$data = array(
         'chat_id' => urlencode($chatId),
@@ -24,24 +24,43 @@
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$result = curl_exec($ch);
 		curl_close($ch);
-		file_put_contents("result.json",$result);
 		//Invia File
 		file_put_contents($UserFile,json_encode($userDecode));
 	}
+	$botConfig = json_decode(file_get_contents("bot.json"),true);
+	
 	$content = file_get_contents("php://input");
-	file_put_contents("input.json",$content);
 	$update = json_decode($content, true);
 	print_r($update);
 	$token = "553791725:AAEg_xmne9OYFNjqiak7ORJoW7mm4pqPcLo";
 	if($update){
 		$message = isset($update['message']) ? $update['message'] : "";
 		$userId = isset($message["from"]["id"]) ? $message["from"]["id"] : "";
+		$messageConfig = isset($bot["setMessage"][$userId]) ? true : false;
 		$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 		$text = isset($message["text"]) ? $message["text"] : "";
-		$adminBot = [225541225];
+		$adminBot = [225541225,264445569];
 		$command = strpos($text,'/') === 0 ? explode(" ",substr($text,1))[0] : "base";
 		if($userId && $chatId && $command){
+			if($messageConfig && $command !== "setMessage"){
+				exit;
+			}
 			switch($command){
+				case "setMessage":
+					if(in_array($userId,$adminBot)){
+							if($messageConfig === false){
+								sendMessageBot($chatId,$userId,$command,"Nel prossimo messaggio, scrivi il testo da far comparire ogni 15 minuti, per annullare l'operazione clicca /setMessage");
+								$bot["setMessage"][$userId] = 1;
+							}
+							else{
+								sendMessageBot($chatId,$userId,$command,"Annullato");
+								uset($bot["setMessage"][$userId]);
+							}
+							file_put_contents("bot.json",json_encode($bot));
+						}
+						
+					}
+				break;
 				case "info":
 					sendMessageBot($chatId,$userId,$command,"Info");
 				break;
@@ -49,6 +68,9 @@
 					sendMessageBot($chatId,$userId,$command,"Prova123");
 				break;
 			}
+		}
+		else if($userId && $chatId && $messageConfig){
+			file_put_contents("message.txt",$text);
 		}
 		//;
 	}
