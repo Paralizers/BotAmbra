@@ -31,6 +31,7 @@
 	$content = file_get_contents("test2.js");
 	file_put_contents("input.json",$content);
 	$update = json_decode($content, true);
+	print_r($update);
 	$token = "553791725:AAEg_xmne9OYFNjqiak7ORJoW7mm4pqPcLo";
 	if($update){
 		$message = isset($update['message']) ? $update['message'] : "";
@@ -39,7 +40,7 @@
 		$text = isset($message["text"]) ? $message["text"] : "";
 		print_r($text);
 		$adminBot = [225541225];
-		$command = strpos("/",$message) === 0 ?  substr(explode(" ",$message)[0],1) : "base";
+		$command = strpos("/",$text) === 0 ?  substr(explode(" ",$text)[0],1) : "base";
 		if($userId && $chatId && $text){
 			switch($command){
 				case "info":
