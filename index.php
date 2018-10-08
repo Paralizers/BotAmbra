@@ -3,10 +3,10 @@
 	function sendMessageBot($chatId,$userId,$message){
 		global $token;
 		$UserFile = "users.json"; //File utente
-		$userJson = file_get_contents();
+		$userJson = file_get_contents($UserFile);
 		// Leggo File Utente
 		$userDecode = json_decode($userJson);
-		if($userDecode[$userId] && $userDecode[$userId] > time()){
+		if(isset($userDecode[$userId]) && $userDecode[$userId] > time()){
 			return false;
 		}
 		$userDecode[$userId] = strtotime("+2 minutes");
@@ -36,6 +36,7 @@
 		$message = isset($update['message']) ? $update['message'] : "";
 		$userId = isset($update["message"]["from"]["id"]) ? $update["message"]["from"]["id"] : "";
 		$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
+		$adminBot = [];
 		if($userId && $chatId)sendMessageBot($chatId,$userId,"Prova123");
 	}
 ?>
