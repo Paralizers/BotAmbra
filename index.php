@@ -33,7 +33,7 @@
 	}
 	$token = "553791725:AAEg_xmne9OYFNjqiak7ORJoW7mm4pqPcLo";
 	$botConfig = json_decode(file_get_contents("bot.json"),true);
-	if($_GET["automatic"]){
+	if($_POST["automatic"] === "2bmamgk"){
 		$text = file_get_contents("message.txt");
 		if($text)sendMessageBot(-1001365101368,null,null,$text,1);
 	}
