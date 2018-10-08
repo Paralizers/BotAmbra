@@ -54,7 +54,7 @@
 			if($userId && $chatId && $command && ($messageConfig === false || $command === "setmessage")){
 				switch($command){
 					case "setmessage":
-						if(in_array($userId,$adminBot) && $userId === $chatId){
+						if(in_array($userId,$adminBot) && $message["chat"]["type"] === "private"){
 								if($messageConfig === false){
 									sendMessageBot($chatId,$userId,$command,"Nel prossimo messaggio, scrivi il testo da far comparire ogni 8 ore, per annullare l'operazione clicca /setmessage");
 									$botConfig["setmessage"][$userId] = 1;
@@ -67,7 +67,7 @@
 							}
 					break;
 					case "message":
-						file_get_contents("message.txt")
+						$text = file_get_contents("message.txt");
 						if($text)sendMessageBot($chatId,$userId,null,$text,1);
 					break;
 					
