@@ -28,15 +28,13 @@
 		//Invia File
 		file_put_contents(json_encode($userDecode),$UserFile);
 	}
-	$content = file_get_contents("test2.json");
-	file_put_contents("input.json",$content);
+	$content = file_get_contents("php://input");
 	$update = json_decode($content, true);
 	$token = "553791725:AAEg_xmne9OYFNjqiak7ORJoW7mm4pqPcLo";
 	if($update){
 		$message = isset($update['message']) ? $update['message'] : "";
 		$userId = isset($update["message"]["from"]["id"]) ? $update["message"]["from"]["id"] : "";
 		$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
-		echo $chatId."<br>".$userId;
 		if($userId && $chatId)sendMessageBot($chatId,$userId,"Prova123");
 	}
 ?>
