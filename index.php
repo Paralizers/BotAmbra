@@ -1,7 +1,6 @@
 <?php
-error_reporting(e_all);
-
-	function sendMessage($chatId,$message){
+	error_reporting(E_ALL);
+	function sendMessageBot($chatId,$message){
 		$data = array(
         'chat_id' => urlencode($chatId),
         'text' => urlencode($message)
@@ -17,7 +16,6 @@ error_reporting(e_all);
 		curl_close($ch);
 	}
 	$content = file_get_contents("test2.json");
-	//file_put_contents("test.json",$content);
 	$update = json_decode($content, true);
 	$token = "553791725:AAEg_xmne9OYFNjqiak7ORJoW7mm4pqPcLo";
 	print_r($update);
@@ -25,6 +23,6 @@ error_reporting(e_all);
 		$message = isset($update['message']) ? $update['message'] : "";
 		$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 		print_r($update);
-		sendMessage($chatId,"Prova123");
+		sendMessageBot($chatId,"Prova123");
 	}
 ?>
