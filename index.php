@@ -1,6 +1,6 @@
 <?php
 error_reporting(e_all);
-	$content = file_get_contents("test.json");
+	$content = file_get_contents("test2.json");
 	//file_put_contents("test.json",$content);
 	$update = json_decode($content, true);
 	print_r($update);
