@@ -9,7 +9,7 @@
 		if($userId && $command && $command !== "setmessage" && isset($userDecode[$userId]["command"][$command]) && $userDecode[$userId]["command"][$command] > time()){
 			return false;
 		}
-		if($userId)$userDecode[$userId]["command"][$command] = strtotime("+2 minutes");
+		if($userId && $command !== "setmessage")$userDecode[$userId]["command"][$command] = strtotime("+2 minutes");
 		//Setto variabile Utente
 		$data = array(
         'chat_id' => urlencode($chatId),
