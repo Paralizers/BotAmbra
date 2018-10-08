@@ -36,9 +36,10 @@
 		$message = isset($update['message']) ? $update['message'] : "";
 		$userId = isset($update["message"]["from"]["id"]) ? $update["message"]["from"]["id"] : "";
 		$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
+		$text = isset($message["text"]) ? $message["text"] : "";
 		$adminBot = [225541225];
 		$command = strpos("/",$message) === 0 ?  substr(explode(" ",$message)[0],1) : "base";
-		if($userId && $chatId){
+		if($userId && $chatId && $text){
 			switch($command){
 				case "info":
 					sendMessageBot($chatId,$userId,$command,"Info");
