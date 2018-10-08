@@ -13,7 +13,7 @@
 		//Setto variabile Utente
 		$data = array(
         'chat_id' => urlencode($chatId),
-        'text' => urlencode($message)
+        'text' => $message
 		);
 		
 		$url ="https://api.telegram.org/bot{$token}/sendMessage";
