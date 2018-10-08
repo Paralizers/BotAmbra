@@ -28,13 +28,13 @@
 		//Invia File
 		file_put_contents($UserFile,json_encode($userDecode));
 	}
-	$content = file_get_contents("test.js");
+	$content = file_get_contents("test2.js");
 	file_put_contents("input.json",$content);
 	$update = json_decode($content, true);
 	$token = "553791725:AAEg_xmne9OYFNjqiak7ORJoW7mm4pqPcLo";
 	if($update){
 		$message = isset($update['message']) ? $update['message'] : "";
-		$userId = isset($update["message"]["from"]["id"]) ? $update["message"]["from"]["id"] : "";
+		$userId = isset($message["from"]["id"]) ? $message["from"]["id"] : "";
 		$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 		$text = isset($message["text"]) ? $message["text"] : "";
 		print_r($text);
