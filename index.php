@@ -1,12 +1,12 @@
 <?php
 	error_reporting(E_ALL);
-	function sendMessageBot($chatId,$userId,$message){
+	function sendMessageBot($chatId,$userId,$command = null,$message){
 		global $token;
 		$UserFile = "users.json"; //File utente
 		$userJson = file_get_contents($UserFile);
 		// Leggo File Utente
 		$userDecode = json_decode($userJson,true);
-		if(isset($userDecode[$userId]) && $userDecode[$userId] > time()){
+		if(isset($userDecode[$userId]["command"][$command]) && $userDecode[$userId]["command"][$command] > time()){
 			return false;
 		}
 		$userDecode[$userId] = strtotime("+2 minutes");
@@ -37,6 +37,17 @@
 		$userId = isset($update["message"]["from"]["id"]) ? $update["message"]["from"]["id"] : "";
 		$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 		$adminBot = [225541225];
-		if($userId && $chatId)sendMessageBot($chatId,$userId,"Prova123");
+		$command = strpos("/",$message) === 0 ?  substr(explode(" ",$message)[0],1) : "base";
+		if($userId && $chatId){
+			switch($command){
+				case "info":
+					sendMessageBot($chatId,$userId,$command,"Info");
+				break;
+				case "test":
+					sendMessageBot($chatId,$userId,$command,"Prova123");
+				break;
+			}
+		}
+		//;
 	}
 ?>
