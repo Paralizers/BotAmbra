@@ -31,7 +31,6 @@
 	$content = file_get_contents("php://input");
 	$update = json_decode($content, true);
 	$token = "553791725:AAEg_xmne9OYFNjqiak7ORJoW7mm4pqPcLo";
-	print_r($update);
 	if($update){
 		$message = isset($update['message']) ? $update['message'] : "";
 		$userId = isset($update["from"]["id"]) : $update["from"]["id"] : "";
