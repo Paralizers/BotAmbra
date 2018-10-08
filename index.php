@@ -15,7 +15,7 @@ error_reporting(e_all);
         'text' => urlencode($text)
     );
 echo "a";
-	$url ="https://api.telegram.org/{$token}/sendMessage";
+	$url ="https://api.telegram.org/bot{$token}/sendMessage";
 
 	//  open connection
 	$ch = curl_init();
