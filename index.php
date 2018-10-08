@@ -1,6 +1,6 @@
 <?php
 	error_reporting(E_ALL);
-	function sendMessageBot($chatId,$userId,$command = null,$message){
+	function sendMessageBot($chatId,$userId,$command = null,$message,$html = null){
 		global $token;
 		$UserFile = "users.json"; //File utente
 		$userJson = file_get_contents($UserFile);
@@ -15,6 +15,7 @@
         'chat_id' => urlencode($chatId),
         'text' => $message
 		);
+		if($html)$data['parse_mode'] = 'html';
 		
 		$url ="https://api.telegram.org/bot{$token}/sendMessage";
 		$ch = curl_init();
@@ -67,6 +68,7 @@
 		}
 		else if($userId && $chatId && $messageConfig && $text && ! $command){
 			file_put_contents("message.txt",$text);
+			sendMessageBot($chatId,$userId,null,$text,1);
 			sendMessageBot($chatId,$userId,null,"Messaggio Impostato Correttamente");
 			unset($botConfig["setMessage"][$userId]);
 			file_put_contents("bot.json",json_encode($botConfig));
