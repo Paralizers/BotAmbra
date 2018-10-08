@@ -12,7 +12,7 @@
 		if($userId && $command !== "setmessage")$userDecode[$userId]["command"][$command] = strtotime("+2 minutes");
 		//Setto variabile Utente
 		$data = array(
-        'chat_id' => $chatId,
+        'chat_id' => (int)$chatId,
         'text' => $message
 		);
 		if($html)$data['parse_mode'] = 'html';
@@ -33,7 +33,7 @@
 	}
 	if($_GET["automatic"]){
 		$text = file_get_contents("message.txt");
-		if($text)sendMessageBot("-1001365101368",null,null,$text,1);
+		if($text)sendMessageBot(-1001365101368,null,null,$text,1);
 	}
 	else{
 		$botConfig = json_decode(file_get_contents("bot.json"),true);
