@@ -42,7 +42,7 @@
 		if($update){
 			$message = isset($update['message']) ? $update['message'] : "";
 			$userId = isset($message["from"]["id"]) ? $message["from"]["id"] : "";
-			$messageConfig = isset($botConfig["setMessage"][$userId]) ? true : false;
+			$messageConfig = isset($botConfig["setmessage"][$userId]) ? true : false;
 			$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 			$text = isset($message["text"]) ? $message["text"] : "";
 			$adminBot = [225541225,264445569];
@@ -53,12 +53,12 @@
 					case "setmessage":
 						if(in_array($userId,$adminBot)){
 								if($messageConfig === false){
-									sendMessageBot($chatId,$userId,$command,"Nel prossimo messaggio, scrivi il testo da far comparire ogni 8 ore, per annullare l'operazione clicca /setMessage");
-									$botConfig["setMessage"][$userId] = 1;
+									sendMessageBot($chatId,$userId,$command,"Nel prossimo messaggio, scrivi il testo da far comparire ogni 8 ore, per annullare l'operazione clicca /setmessage");
+									$botConfig["setmessage"][$userId] = 1;
 								}
 								else{
 									sendMessageBot($chatId,$userId,$command,"Annullato");
-									unset($botConfig["setMessage"][$userId]);
+									unset($botConfig["setmessage"][$userId]);
 								}
 								file_put_contents("bot.json",json_encode($botConfig));
 							}
@@ -80,7 +80,7 @@
 				sendMessageBot($chatId,$userId,null,"Anteprima messaggio:");
 				sendMessageBot($chatId,$userId,null,$text,1);
 				sendMessageBot($chatId,$userId,null,"Messaggio Impostato Correttamente");
-				unset($botConfig["setMessage"][$userId]);
+				unset($botConfig["setmessage"][$userId]);
 				file_put_contents("bot.json",json_encode($botConfig));
 			}
 		}
