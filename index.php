@@ -41,6 +41,7 @@
 		$text = isset($message["text"]) ? $message["text"] : "";
 		$adminBot = [225541225,264445569];
 		$command = strpos($text,'/') === 0 ? explode(" ",substr($text,1))[0] : "base";
+		file_put_contents("command.json",$command);
 		if($userId && $chatId && $command){
 			if($messageConfig && $command !== "setMessage"){
 				exit;
@@ -67,7 +68,7 @@
 				break;
 			}
 		}
-		else if($userId && $chatId && $messageConfig){
+		else if($userId && $chatId && $messageConfig && $text){
 			file_put_contents("message.txt",$text);
 			sendMessageBot($chatId,$userId,null,"Messaggio Impostato Correttamente");
 		}
