@@ -54,7 +54,7 @@
 							}
 							else{
 								sendMessageBot($chatId,$userId,$command,"Annullato");
-								uset($botConfig["setMessage"][$userId]);
+								unset($botConfig["setMessage"][$userId]);
 							}
 							file_put_contents("bot.json",json_encode($botConfig));
 						}
