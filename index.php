@@ -12,7 +12,7 @@
 		if($userId && $command !== "setmessage")$userDecode[$userId]["command"][$command] = strtotime("+5 minutes");
 		//Setto variabile Utente
 		$data = array(
-        'chat_id' => (int)$chatId,
+        'chat_id' => $chatId,
         'text' => $message
 		);
 		if($html)$data['parse_mode'] = 'html';
