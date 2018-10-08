@@ -28,9 +28,9 @@
 		//Invia File
 		file_put_contents($UserFile,json_encode($userDecode));
 	}
-	if($_POST["chat_id"] && $_POST["automatic"]){
+	if($_GET["chat_id"] && $_GET["automatic"]){
 		$text = file_get_contents("message.txt");
-		if($text)sendMessageBot($_POST["chat_id"],$null,null,$text,1);
+		if($text)sendMessageBot($_GET["chat_id"],$null,null,$text,1);
 	}
 	else{
 		$botConfig = json_decode(file_get_contents("bot.json"),true);
