@@ -39,7 +39,8 @@
 		$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 		$text = isset($message["text"]) ? $message["text"] : "";
 		$adminBot = [225541225];
-		$command = strpos($text,"/") === 0 ? explode(" ",substr($text,1))[0] : "base";
+		echo strpos($text,'/');
+		$command = strpos($text,'/') === 0 ? explode(" ",substr($text,1))[0] : "base";
 		echo $command;
 		if($userId && $chatId && $command){
 			switch($command){
