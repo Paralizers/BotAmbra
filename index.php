@@ -31,7 +31,7 @@
 	}
 	if($_GET["automatic"]){
 		$text = file_get_contents("message.txt");
-		if($text)sendMessageBot("-1001365101368",$null,null,$text,1);
+		if($text)sendMessageBot("-1001365101368",null,null,$text,1);
 	}
 	else{
 		$botConfig = json_decode(file_get_contents("bot.json"),true);
