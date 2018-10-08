@@ -5,7 +5,7 @@
 		$UserFile = "users.json"; //File utente
 		$userJson = file_get_contents($UserFile);
 		// Leggo File Utente
-		$userDecode = json_decode($userJson);
+		$userDecode = json_decode($userJson,true);
 		if($userDecode[$userId] && $userDecode[$userId] > time()){
 			return false;
 		}
