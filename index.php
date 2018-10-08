@@ -6,7 +6,7 @@
 		$userJson = file_get_contents($UserFile);
 		// Leggo File Utente
 		$userDecode = json_decode($userJson,true);
-		if($command && $command !== "setMessage" && isset($userDecode[$userId]["command"][$command]) && $userDecode[$userId]["command"][$command] > time()){
+		if($command && $command !== "setmessage" && isset($userDecode[$userId]["command"][$command]) && $userDecode[$userId]["command"][$command] > time()){
 			return false;
 		}
 		$userDecode[$userId]["command"][$command] = strtotime("+2 minutes");
@@ -42,9 +42,9 @@
 		$adminBot = [225541225,264445569];
 		$command = strpos($text,'/') === 0 ? explode(" ",substr($text,1))[0] : false;
 		file_put_contents("command.json",$command);
-		if($userId && $chatId && $command && ($messageConfig === false || $command !== "setMessage")){
+		if($userId && $chatId && $command && ($messageConfig === false || $command !== "setmessage")){
 			switch($command){
-				case "setMessage":
+				case "setmessage":
 					if(in_array($userId,$adminBot)){
 							if($messageConfig === false){
 								sendMessageBot($chatId,$userId,$command,"Nel prossimo messaggio, scrivi il testo da far comparire ogni 15 minuti, per annullare l'operazione clicca /setMessage");
