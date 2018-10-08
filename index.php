@@ -6,7 +6,7 @@
 		$userJson = file_get_contents($UserFile);
 		// Leggo File Utente
 		$userDecode = json_decode($userJson,true);
-		if($userDecode[$userId] && $userDecode[$userId] > time()){
+		if(isset($userDecode[$userId]) && $userDecode[$userId] > time()){
 			return false;
 		}
 		$userDecode[$userId] = strtotime("+2 minutes");
