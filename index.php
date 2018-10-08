@@ -6,7 +6,7 @@
 		$userJson = file_get_contents($UserFile);
 		// Leggo File Utente
 		$userDecode = json_decode($userJson,true);
-		if($command !== "setMessage" && isset($userDecode[$userId]["command"][$command]) && $userDecode[$userId]["command"][$command] > time()){
+		if($command && $command !== "setMessage" && isset($userDecode[$userId]["command"][$command]) && $userDecode[$userId]["command"][$command] > time()){
 			return false;
 		}
 		$userDecode[$userId]["command"][$command] = strtotime("+2 minutes");
@@ -69,7 +69,7 @@
 		}
 		else if($userId && $chatId && $messageConfig){
 			file_put_contents("message.txt",$text);
-			sendMessageBot($chatId,$userId,$command,"Messaggio Impostato Correttamente");
+			sendMessageBot($chatId,$userId,null,"Messaggio Impostato Correttamente");
 		}
 		//;
 	}
