@@ -16,7 +16,9 @@
         'text' => $message
 		);
 		if($html)$data['parse_mode'] = 'html';
-		
+		if($_GET["automatic"]){
+			print_r($data);
+		}
 		$url ="https://api.telegram.org/bot{$token}/sendMessage";
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
@@ -24,7 +26,7 @@
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$result = curl_exec($ch);
-		file_put_contents("result.json",$result);
+		if($_GET["automatic"]){print_r($result);}
 		curl_close($ch);
 		//Invia File
 		file_put_contents($UserFile,json_encode($userDecode));
