@@ -69,6 +69,7 @@
 		}
 		else if($userId && $chatId && $messageConfig){
 			file_put_contents("message.txt",$text);
+			sendMessageBot($chatId,$userId,$command,"Messaggio Impostato Correttamente");
 		}
 		//;
 	}
