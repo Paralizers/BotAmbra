@@ -6,6 +6,7 @@ error_reporting(e_all);
         'chat_id' => urlencode($chatId),
         'text' => urlencode($message)
 		);
+		print_r($data);
 		$url ="https://api.telegram.org/bot{$token}/sendMessage";
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
@@ -19,9 +20,11 @@ error_reporting(e_all);
 	//file_put_contents("test.json",$content);
 	$update = json_decode($content, true);
 	$token = "553791725:AAEg_xmne9OYFNjqiak7ORJoW7mm4pqPcLo";
+	print_r($update);
 	if($update){
 		$message = isset($update['message']) ? $update['message'] : "";
 		$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
+		print_r($update);
 		sendMessage($chatId,"Prova123");
 	}
 ?>
