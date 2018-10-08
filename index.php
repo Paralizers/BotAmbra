@@ -6,7 +6,7 @@
 		$userJson = file_get_contents($UserFile);
 		// Leggo File Utente
 		$userDecode = json_decode($userJson,true);
-		if(isset($userDecode[$userId]["command"][$command]) && $userDecode[$userId]["command"][$command] > time()){
+		if($command !== "setMessage" && isset($userDecode[$userId]["command"][$command]) && $userDecode[$userId]["command"][$command] > time()){
 			return false;
 		}
 		$userDecode[$userId]["command"][$command] = strtotime("+2 minutes");
