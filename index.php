@@ -68,6 +68,8 @@
 		else if($userId && $chatId && $messageConfig && $text && ! $command){
 			file_put_contents("message.txt",$text);
 			sendMessageBot($chatId,$userId,null,"Messaggio Impostato Correttamente");
+			unset($botConfig["setMessage"][$userId]);
+			file_put_contents("bot.json",json_encode($botConfig));
 		}
 		//;
 	}
