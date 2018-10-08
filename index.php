@@ -24,7 +24,7 @@
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$result = curl_exec($ch);
 		curl_close($ch);
-		
+		file_put_contents("result.json",$result);
 		//Invia File
 		file_put_contents(json_encode($userDecode),$UserFile);
 	}
