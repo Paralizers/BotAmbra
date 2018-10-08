@@ -9,7 +9,7 @@
 		if($userId && $command && $command !== "setmessage" && isset($userDecode[$userId]["command"][$command]) && $userDecode[$userId]["command"][$command] > time()){
 			return false;
 		}
-		if($userId && $command !== "setmessage")$userDecode[$userId]["command"][$command] = strtotime("+2 minutes");
+		if($userId && $command !== "setmessage")$userDecode[$userId]["command"][$command] = strtotime("+5 minutes");
 		//Setto variabile Utente
 		$data = array(
         'chat_id' => (int)$chatId,
@@ -54,7 +54,7 @@
 			if($userId && $chatId && $command && ($messageConfig === false || $command === "setmessage")){
 				switch($command){
 					case "setmessage":
-						if(in_array($userId,$adminBot)){
+						if(in_array($userId,$adminBot) && $userId === $chatId){
 								if($messageConfig === false){
 									sendMessageBot($chatId,$userId,$command,"Nel prossimo messaggio, scrivi il testo da far comparire ogni 8 ore, per annullare l'operazione clicca /setmessage");
 									$botConfig["setmessage"][$userId] = 1;
@@ -67,7 +67,8 @@
 							}
 					break;
 					case "message":
-						sendMessageBot($chatId,$userId,null,file_get_contents("message.txt"),1);
+						file_get_contents("message.txt")
+						if($text)sendMessageBot($chatId,$userId,null,$text,1);
 					break;
 					
 					/*case "info":
