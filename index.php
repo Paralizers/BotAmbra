@@ -34,7 +34,7 @@
 	$token = "553791725:AAEg_xmne9OYFNjqiak7ORJoW7mm4pqPcLo";
 	if($update){
 		$message = isset($update['message']) ? $update['message'] : "";
-		$userId = isset($update["from"]["id"]) ? $update["from"]["id"] : "";
+		$userId = isset($update["message"]["from"]["id"]) ? $update["message"]["from"]["id"] : "";
 		$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 		echo $chatId."<br>".$userId;
 		if($userId && $chatId)sendMessageBot($chatId,$userId,"Prova123");
