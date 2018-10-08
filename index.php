@@ -15,7 +15,7 @@ error_reporting(e_all);
 		$result = curl_exec($ch);
 		curl_close($ch);
 	}
-	$content = file_get_contents("php://input");
+	$content = file_get_contents("test2.json");
 	//file_put_contents("test.json",$content);
 	$update = json_decode($content, true);
 	$token = "553791725:AAEg_xmne9OYFNjqiak7ORJoW7mm4pqPcLo";
