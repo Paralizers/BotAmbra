@@ -1,7 +1,8 @@
 <?php
 	$content = file_get_contents("test.json");
-	file_put_contents("test.json",$content);
+	//file_put_contents("test.json",$content);
 	$update = json_decode($content, true);
+	print_r($update);
 	$token = "553791725:AAEg_xmne9OYFNjqiak7ORJoW7mm4pqPcLo";
 	if($update){
 		$message = isset($update['message']) ? $update['message'] : "";
@@ -12,7 +13,7 @@
         'chat_id' => urlencode($chatId),
         'text' => urlencode($text)
     );
-
+echo "a";
 	$url ="https://api.telegram.org/{$token}/sendMessage";
 
 	//  open connection
