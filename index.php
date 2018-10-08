@@ -30,8 +30,8 @@
 	$botConfig = json_decode(file_get_contents("bot.json"),true);
 	
 	$content = file_get_contents("php://input");
+	file_put_contents("inputs.json",$content);
 	$update = json_decode($content, true);
-	print_r($update);
 	$token = "553791725:AAEg_xmne9OYFNjqiak7ORJoW7mm4pqPcLo";
 	if($update){
 		$message = isset($update['message']) ? $update['message'] : "";
