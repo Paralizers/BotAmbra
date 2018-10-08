@@ -28,7 +28,7 @@
 		//Invia File
 		file_put_contents($UserFile,json_encode($userDecode));
 	}
-	$content = file_get_contents("php://input");
+	$content = file_get_contents("test.js");
 	file_put_contents("input.json",$content);
 	$update = json_decode($content, true);
 	$token = "553791725:AAEg_xmne9OYFNjqiak7ORJoW7mm4pqPcLo";
@@ -37,6 +37,7 @@
 		$userId = isset($update["message"]["from"]["id"]) ? $update["message"]["from"]["id"] : "";
 		$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 		$text = isset($message["text"]) ? $message["text"] : "";
+		print_r($text);
 		$adminBot = [225541225];
 		$command = strpos("/",$message) === 0 ?  substr(explode(" ",$message)[0],1) : "base";
 		if($userId && $chatId && $text){
