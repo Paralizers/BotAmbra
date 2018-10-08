@@ -12,7 +12,7 @@
 		if($userId && $command !== "setmessage")$userDecode[$userId]["command"][$command] = strtotime("+2 minutes");
 		//Setto variabile Utente
 		$data = array(
-        'chat_id' => urlencode($chatId),
+        'chat_id' => $chatId,
         'text' => $message
 		);
 		if($html)$data['parse_mode'] = 'html';
@@ -29,9 +29,9 @@
 		//Invia File
 		file_put_contents($UserFile,json_encode($userDecode));
 	}
-	if($_GET["chat_id"] && $_GET["automatic"]){
+	if($_GET["automatic"]){
 		$text = file_get_contents("message.txt");
-		if($text)sendMessageBot($_GET["chat_id"],$null,null,$text,1);
+		if($text)sendMessageBot("-1001365101368",$null,null,$text,1);
 	}
 	else{
 		$botConfig = json_decode(file_get_contents("bot.json"),true);
@@ -48,7 +48,7 @@
 			$adminBot = [225541225,264445569];
 			$command = strpos($text,'/') === 0 ? explode(" ",explode("@",substr($text,1))[0])[0] : false;
 			file_put_contents("command.json",$command);
-			if($userId && $chatId && $command && ($messageConfig === false || $command !== "setmessage")){
+			if($userId && $chatId && $command && ($messageConfig === false || $command === "setmessage")){
 				switch($command){
 					case "setmessage":
 						if(in_array($userId,$adminBot)){
