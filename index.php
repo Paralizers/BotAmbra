@@ -26,7 +26,7 @@
 		curl_close($ch);
 		file_put_contents("result.json",$result);
 		//Invia File
-		file_put_contents(json_encode($userDecode),$UserFile);
+		file_put_contents($UserFile,json_encode($userDecode));
 	}
 	$content = file_get_contents("php://input");
 	file_put_contents("input.json",$content);
