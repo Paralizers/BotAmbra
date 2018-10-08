@@ -58,8 +58,6 @@
 							}
 							file_put_contents("bot.json",json_encode($bot));
 						}
-						
-					}
 				break;
 				case "info":
 					sendMessageBot($chatId,$userId,$command,"Info");
