@@ -1,0 +1,2 @@
+{"update_id":14180657,
+"message":{"message_id":3,"from":{"id":225541225,"is_bot":false,"first_name":"Paralizer","username":"Paralizers","language_code":"it-IT"},"chat":{"id":225541225,"first_name":"Paralizer","username":"Paralizers","type":"private"},"date":1539025113,"text":"/start","entities":[{"offset":0,"length":6,"type":"bot_command"}]}}
