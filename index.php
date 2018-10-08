@@ -13,6 +13,7 @@
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$result = curl_exec($ch);
+		file_put_contents("result.json",$result);
 		curl_close($ch);
 	}
 	$content = file_get_contents("test2.json");
